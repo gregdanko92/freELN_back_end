@@ -1,0 +1,29 @@
+{
+  "name": "freeln_back_end",
+  "version": "1.0.0",
+  "description": "back-end for ELN web app",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6",
+    "nodemon": "^2.0.12",
+    "package-json": "^7.0.0",
+    "rowdy-logger": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregdanko92/freELN_back_end.git"
+  },
+  "author": "greg danko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregdanko92/freELN_back_end/issues"
+  },
+  "homepage": "https://github.com/gregdanko92/freELN_back_end#readme"
+}

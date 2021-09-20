@@ -1,0 +1,21 @@
+{
+  "programs": [
+    {
+      "name": "Neurodegenerative Protein 1",
+      "target": "Example Neurodegenerative Illness",
+      "stakeholders":["Curly", "Larry", "Moe"],
+      "teams": [
+        {
+          "name": "in vitro",
+          "members": ["Strahan", "Umenyiora"], 
+          "experimentDirectories": [
+            {
+              "name": "neuronal cell line experiments",
+              "experiments":[]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
