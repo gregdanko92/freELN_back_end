@@ -1,21 +1,32 @@
 {
   "programs": [
     {
-      "name": "Neurodegenerative Protein 1",
+      "name": "PROGRAM NAME HERE",
       "target": "Example Neurodegenerative Illness",
-      "stakeholders":["Curly", "Larry", "Moe"],
       "teams": [
         {
-          "name": "in vitro",
+          "name": "TEAM NAME HERE",
           "members": ["Strahan", "Umenyiora"], 
           "experimentDirectories": [
             {
-              "name": "neuronal cell line experiments",
-              "experiments":[]
+              "name": "EXPERIMENT DIRECTORY HERE",
+              "experiments":[
+                {
+                  "title": "EXPERIMENT TITLE HERE",
+                  "tags": [ "SAR", "neuronal cells", "novel ligands"],
+                  "experimentDate": "January 21st, 2021",
+                  "experimentNotes": "Tested Compounds 1322-1399 in 7 point dose repsonse",
+                  "protocolsUsed":["Neuronal Cell culture", "Neuronal Culture Isolation", "Neuronal SAR Assay technique 1"],
+                  "associateFiles": ["nSAR01212021.csv", "nSAR01212021.ppt", "nSAR01212021.pzfx"]
+                }
+
+              ]
             }
           ]
         }
-      ]
+      ],
+      "stakeholders":["Curly", "Larry", "Moe"]
     }
+    
   ]
 }

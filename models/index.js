@@ -16,5 +16,6 @@ mongoose.connect(connectionString, configOptions)
 module.exports = {
   Program: require('./Program').Program,
   Team: require('./Program').Team,
-  ExperimentDirectory: require('./Program').ExperimentDirectory
+  ExperimentDirectory: require('./Program').ExperimentDirectory,
+  Experiment: require('./Program').Experiment
 };

@@ -2,7 +2,7 @@
 const express = require('express');
 const programsController = require('./controllers/programsController');
 const cors = require('cors')
-const port = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 // middleware
@@ -16,6 +16,6 @@ app.use(express.json());
 app.use('/api/programs', programsController);
 
 // listen
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`)
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
 });

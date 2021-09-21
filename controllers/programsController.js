@@ -7,18 +7,20 @@ const db = require('../models');
 //return dat for all programs
 
 router.get('/', (req, res) => {
-  db.Program.find({}, (err, foundPrograms) => {
+   db.Program.find({}, (err, foundPrograms) => {
     if (err) return console.log(err);
     
     res.json(foundPrograms);
   });
 });
-// actual route - GET /api/games/:id
+// actual route - GET /api/programs/:id
 router.get('/:id', (req, res) => {
-  db.Program.findById(req.params.id, (err, foundProgram) => {
+   db.Program.findById(req.params.id, (err, foundProgram) => {
     if (err) return console.log(err);
+
     
     res.json(foundProgram);
+    console.log( foundProgram)
   });
 });
 
@@ -35,6 +37,7 @@ router.post('/', (req, res) => {
 
 // actual route - PUT /api/games/:id
 router.put('/:id', (req, res) => {
+
   db.Program.findByIdAndUpdate(
     req.params.id, // finds the Program with id passed in from URL
     req.body, // passes in data to update a program from the req.body
