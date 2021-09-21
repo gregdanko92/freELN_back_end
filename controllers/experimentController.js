@@ -7,59 +7,58 @@
     const db = require('../models')
     
     
-    // index teams route
+    // index experimentalDirectory route - ✅
     
-    // do we need this to render as a page? probably not, the articles should be indexed on the city show page anyway
-    // either way, would need to know how to return the JSON object with only the articles per city
     
-    router.get('/:programId/teams', (req,res)=>{
-        db.Program.findById(req.params.programId, (err, foundProgram)=>{
-            console.log('hello from index teams route the found teams render')
+    router.get('/:programId/:teamId/:exDirId', (req,res)=>{
+        db.ExperimentDirectory.findById(req.params.exDirId, (err, foundExDir)=>{
+            console.log('hello from index of experimentalDirectory route')
              if (err) return console.log(err)
             
-            console.log(foundProgram.teams)
-            res.json(foundProgram)
+            console.log(foundExDir.experiments)
+            res.json(foundExDir)
             
         })
        
     })
     
-    // show team route
+    // show experiment route  ✅
     
-    router.get('/:programId/:teamId', (req,res) =>{
-        console.log('route hit')
-        console.log(req.params.programId)
+    router.get('/:programId/:teamId/:exDirId/:experimentId', (req,res) =>{
         //look thought Program object to get the id, then find teams in that
-        db.Program.findById(req.params.programId, (err, foundProgram) => {
+        db.ExperimentDirectory.findById(req.params.exDirId, (err, foundExDir)=> {
             if (err) return console.log(err)
-            console.log('found' + foundProgram.teams)
-            //return those found teams ina  new array, this is not essential but cleans up the code a little
-            const teamsArray = [...foundProgram.teams]
-            console.log('programs array log' , teamsArray)
-            console.log(req.params.teamId)
+            console.log('found' + foundExDir.experiments)
+            //return those found exdirs ina  new array, this is not essential but cleans up the code a little
+            console.log(foundExDir, ' FOUND ExDir ')
+            const experimentArray = [...foundExDir.experiments]
+            console.log('programs array log' , experimentArray)
+            console.log(req.params.experimentId)
             //this searches the team array for the team with the same id as in the url and stores it as a variable
             
-            const foundTeam = teamsArray.find((team)=>{
+            const foundExperiment = experimentArray.find((experiment)=>{
             // note the == here, the team._id is a string but req.params.articleId is acutally a differnt datatype called an object ID, strict equality will match datatypes and fail, so use the double equals
-            return team._id == req.params.teamId
+            return experiment._id == req.params.experimentId
              
             })
-            console.log(foundTeam)
-            //now we render out that found article on the page, 
-            res.json(foundTeam)
+            console.log(foundExperiment)
+            //now we render out that found exDir on the page, 
+            res.json(foundExperiment)
             
         })
     
     })
+
+    //Post Route ✅
     
-    router.post('/:programId', (req,res)=>{
-        db.Team.create(req.body,(err, newTeam)=>{
-            console.log('created article')
+    router.post('/:programId/:teamId/:exDirId', (req,res)=>{
+        db.Experiment.create(req.body,(err, newExperiment)=>{
+            console.log('created experiment')
             if (err) return console.log(err)
-            db.Program.findByIdAndUpdate(
-                req.params.programId, { $push: {teams: newTeam}}, (err, updatedTeam) =>{
+            db.ExperimentDirectory.findByIdAndUpdate(
+                req.params.exDirId, { $push: {experiments: newExperiment}}, (err, updatedExperiments) =>{
                     if (err) return console.log(err)
-                    res.json(updatedTeam)
+                    res.json(updatedExperiments)
                 }
             )
         })
@@ -86,18 +85,18 @@
     
     
     
-    // destroy articles route
-    router.delete('/:programId/:teamId',(req,res)=>{
+    // destroy articles route ✅
+    router.delete('/:programId/:teamId/:exDirId/:experimentId',(req,res)=>{
         //go low to high, delete from the articles db first, then pass the article that was deleted to the city db. 
-        db.Team.findByIdAndDelete(req.params.teamId, (err, deletedTeam) => {
+        db.Experiment.findByIdAndDelete(req.params.experimentId, (err, deletedExperiment) => {
             if (err) return console.log(err);
-            db.Program.findByIdAndUpdate(
-                req.params.programId,
-                { $pull: {teams:deletedTeam}},
+            db.ExperimentDirectory.findByIdAndUpdate(
+                req.params.exDirId,
+                { $pull: {experiments:deletedExperiment}},
                 {new: true}, // do you want the version with or without changes?, you want the City with the article deleted, therefore new:true. 
-                (err, updatedProgram) => {
+                (err, updatedExDir) => {
                     if (err) return console.log(err)
-                    res.json(updatedProgram)
+                    res.json(updatedExDir)
                 }
             )
           });

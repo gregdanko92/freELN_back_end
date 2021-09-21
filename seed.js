@@ -58,10 +58,10 @@ const data = require('./programData.json');
     // console.log(newExDir)
 
     // // // // // // updateds // // // // // //
-    const updatedExDir = await db.ExperimentDirectory.findByIdAndUpdate(newExDir._id, {$push:{experiments:newExperiment}}, {new: true})
+    const updatedExDir = await db.ExperimentDirectory.findByIdAndUpdate(newExDir[0]._id, {$push:{experiments:newExperiment}}, {new: true})
     console.log(updatedExDir, 'UPDATED EXDIR')
 
-    const updatedTeam = await db.Team.findByIdAndUpdate(newTeam._id, { $push:{ experimentDirectories: newExDir} }, { new: true });
+    const updatedTeam = await db.Team.findByIdAndUpdate(newTeam[0]._id, { $push:{ experimentDirectories: updatedExDir} }, { new: true });
     console.log(updatedTeam, "UPDATED TEAM")
 
     const updatedProgram = await db.Program.findByIdAndUpdate(newPrograms[0]._id, { $push: {teams: updatedTeam} }, { new: true } );

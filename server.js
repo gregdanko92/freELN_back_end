@@ -1,6 +1,9 @@
 // imports
 const express = require('express');
 const programsController = require('./controllers/programsController');
+const teamsController = require('./controllers/teamsController');
+const experimentDirectoryController = require('./controllers/experimentDirectoryController');
+const experimentController = require('./controllers/experimentController');
 const cors = require('cors')
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -14,6 +17,9 @@ app.use(express.json());
 
 // API routes
 app.use('/api/programs', programsController);
+app.use('/api/programs', teamsController);
+app.use('/api/programs', experimentDirectoryController);
+app.use('/api/programs', experimentController);
 
 // listen
 app.listen(PORT, () => {
