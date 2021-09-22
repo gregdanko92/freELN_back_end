@@ -9,6 +9,7 @@
     "mongoose": "^6.0.6",
     "nodemon": "^2.0.12",
     "package-json": "^7.0.0",
+    "react-router-dom": "^5.3.0",
     "rowdy-logger": "^1.0.2"
   },
   "devDependencies": {},
