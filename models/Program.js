@@ -18,7 +18,12 @@ const ExperimentDirectorySchema = new Schema({
 const TeamSchema = new Schema({
     name: String,
     members:[],
-    experimentDirectories: []
+    experimentDirectories: [
+        // {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'ExperimentDirectory'
+        // }
+    ]
 })
 
 const ProgramSchema = new Schema({
@@ -28,6 +33,8 @@ const ProgramSchema = new Schema({
   teams: [],
   stakeholders:[]
   
+}, {
+    strictPopulate:false
 });
 
 const Program = mongoose.model('Program', ProgramSchema);

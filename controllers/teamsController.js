@@ -12,17 +12,17 @@
     // do we need this to render as a page? probably not, the articles should be indexed on the city show page anyway
     // either way, would need to know how to return the JSON object with only the articles per city
     
-    router.get('/:programId/teams', (req,res)=>{
-        db.Program.findById(req.params.programId, (err, foundProgram)=>{
-            console.log('hello from index teams route the found teams render')
-             if (err) return console.log(err)
+    // router.get('/:programId/teams', (req,res)=>{
+    //     db.Program.findById(req.params.programId, (err, foundProgram)=>{
+    //         console.log('hello from index teams route the found teams render')
+    //          if (err) return console.log(err)
             
-            console.log(foundProgram.teams)
-            res.json(foundProgram)
+    //         console.log(foundProgram.teams)
+    //         res.json(foundProgram)
             
-        })
+    //     })
        
-    })
+    // })
     
     // show team route
     

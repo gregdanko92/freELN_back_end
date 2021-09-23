@@ -11,11 +11,12 @@
     
     
     router.get('/:programId/:teamId/', (req,res)=>{
+        console.log('hello from route')
         db.Team.findById(req.params.teamId, (err, foundTeam)=>{
             console.log('hello from index of experimentalDirectory route')
              if (err) return console.log(err)
             
-            console.log(foundTeam.experimentalDirectory)
+            console.log(foundTeam.experimentalDirectory, 'EXDIR CONSOLE LOG')
             res.json(foundTeam)
             
         })
@@ -28,12 +29,12 @@
         //look thought Program object to get the id, then find teams in that
         db.Team.findById(req.params.teamId, (err, foundTeam) => {
             if (err) return console.log(err)
-            console.log('found' + foundTeam.experimentDirectories)
+            // console.log('found' + foundTeam.experimentDirectories)
             //return those found exdirs ina  new array, this is not essential but cleans up the code a little
-            console.log(foundTeam, ' FOUND TEAM ')
+            // console.log(foundTeam, ' FOUND TEAM ')
             const exDirArray = [...foundTeam.experimentDirectories]
-            console.log('programs array log' , exDirArray)
-            console.log(req.params.exDirId)
+            // console.log('programs array log' , exDirArray)
+            // console.log(req.params.exDirId)
             //this searches the team array for the team with the same id as in the url and stores it as a variable
             
             const foundExDir = exDirArray.find((exDir)=>{
@@ -41,7 +42,7 @@
             return exDir._id == req.params.exDirId
              
             })
-            console.log(foundExDir)
+            // console.log(foundExDir)
             //now we render out that found exDir on the page, 
             res.json(foundExDir)
             
@@ -52,12 +53,14 @@
     //Post Route ✅
     
     router.post('/:programId/:teamId', (req,res)=>{
+        // console.log('hiiiitin it')
         db.ExperimentDirectory.create(req.body,(err, newExDir)=>{
-            console.log('created exDir')
+            console.log('CREATED EXDIR')
             if (err) return console.log(err)
             db.Team.findByIdAndUpdate(
                 req.params.teamId, { $push: {experimentDirectories: newExDir}}, (err, updatedExDir) =>{
                     if (err) return console.log(err)
+                    console.log(updatedExDir)
                     res.json(updatedExDir)
                 }
             )
