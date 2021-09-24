@@ -26,7 +26,8 @@ const TeamSchema = new Schema({
     // ]
     date: String,
     content: String,
-    text:String
+    text:String,
+    file:String
 })
 
 const ProgramSchema = new Schema({

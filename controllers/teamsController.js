@@ -27,31 +27,32 @@
     // show team route
     
     router.get('/:programId/:teamId', (req,res) =>{
-        console.log('route hit')
+        console.log('hit the SHOW route')
         console.log(req.params.programId)
         //look thought Program object to get the id, then find teams in that
-        db.Program.findById(req.params.programId, (err, foundProgram) => {
-            if (err) return console.log(err)
-            console.log('found' + foundProgram.teams)
-            //return those found teams ina  new array, this is not essential but cleans up the code a little
-            const teamsArray = [...foundProgram.teams]
-            console.log('programs array log' , teamsArray)
-            console.log(req.params.teamId)
-            //this searches the team array for the team with the same id as in the url and stores it as a variable
+        // db.Program.findById(req.params.programId, (err, foundProgram) => {
+        //     if (err) return console.log(err)
+        //     console.log('found' + foundProgram.teams)
+        //     //return those found teams ina  new array, this is not essential but cleans up the code a little
+        //     const teamsArray = [...foundProgram.teams]
+        //     console.log('programs array log' , teamsArray)
+        //     console.log(req.params.teamId)
+        //     //this searches the team array for the team with the same id as in the url and stores it as a variable
             
-            const foundTeam = teamsArray.find((team)=>{
-            // note the == here, the team._id is a string but req.params.articleId is acutally a differnt datatype called an object ID, strict equality will match datatypes and fail, so use the double equals
-            return team._id == req.params.teamId
+        //     const foundTeam = teamsArray.find((team)=>{
+        //     // note the == here, the team._id is a string but req.params.articleId is acutally a differnt datatype called an object ID, strict equality will match datatypes and fail, so use the double equals
+        //     return team._id == req.params.teamId
              
+        //     })
+        //     console.log(foundTeam)
+        //     //now we render out that found article on the page, 
+        //     res.json(foundTeam)
+            db.Team.findById(req.params.teamId, (err, foundTeam)=>{
+                if(err) return console.log(err)
+                res.json(foundTeam)
             })
-            console.log(foundTeam)
-            //now we render out that found article on the page, 
-            res.json(foundTeam)
-            
         })
-    
-    })
-    
+        
     router.post('/:programId', (req,res)=>{
         db.Team.create(req.body,(err, newTeam)=>{
             console.log('created article')
@@ -65,16 +66,46 @@
         })
     })
     
-    // update  route GOOD GOD 
+    // update  route GOOD GOD \
+
+    router.get('/:programId/:teamId/edit', (req,res)=>{
+        // db.Program.findById(req.params.programId, (err, foundProgram) => {
+        //     if (err) return console.log(err)
+        //     console.log('found' + foundProgram.teams)
+        //     //return those found teams ina  new array, this is not essential but cleans up the code a little
+        //     const teamsArray = [...foundProgram.teams]
+        //     console.log('programs array log' , teamsArray)
+        //     console.log(req.params.teamId)
+        //     //this searches the team array for the team with the same id as in the url and stores it as a variable
+            
+        //     const foundTeam = teamsArray.find((team)=>{
+        //     // note the == here, the team._id is a string but req.params.articleId is acutally a differnt datatype called an object ID, strict equality will match datatypes and fail, so use the double equals
+        //     return team._id == req.params.teamId
+             
+        //     })
+        //     console.log(foundTeam)
+        //     //now we render out that found article on the page, 
+        //     res.json(foundTeam)
+        // })
+        db.Team.findById(req.params.teamId, (err, foundTeam)=>{
+            if (err) return console.log(err)
+            res.json(foundTeam)
+        })
+
+
+    })
+        
     
     router.put('/:programId/:teamId', (req,res)=>{
+        console.log('hit the put route')
+        console.log(req.body, 'REQ>BODY'), // finds the TEAM with id passed in from URL
         db.Team.findByIdAndUpdate(
-            req.params.id, // finds the TEAM with id passed in from URL
+            req.params.teamId,
             req.body, // passes in data to update a TEAM from the req.body
             {new: true}, // We want to updated TEAM returned in the callback
             (err, updatedTeam) => { // function called after update completes
               if (err) return console.log(err);
-              
+              console.log(updatedTeam)
               res.json(updatedTeam);
             });
     })
