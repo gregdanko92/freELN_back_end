@@ -65,23 +65,23 @@
         })
     })
     
-    // update articles route GOOD GOD WHAT
+    // update  route GOOD GOD 
     
-    // router.put('/:cityId/:articleId', (req,res)=>{
-    //     db.Article.findByIdAndUpdate(
-    //         req.params.id, // finds the ARTICLE with id passed in from URL
-    //         req.body, // passes in data to update a ARTICLE from the req.body
-    //         {new: true}, // We want to updated ARTICLE returned in the callback
-    //         (err, updatedArticle) => { // function called after update completes
-    //           if (err) return console.log(err);
+    router.put('/:programId/:teamId', (req,res)=>{
+        db.Team.findByIdAndUpdate(
+            req.params.id, // finds the TEAM with id passed in from URL
+            req.body, // passes in data to update a TEAM from the req.body
+            {new: true}, // We want to updated TEAM returned in the callback
+            (err, updatedTeam) => { // function called after update completes
+              if (err) return console.log(err);
               
-    //           res.json(updatedArticle);
-    //         });
-    // })
+              res.json(updatedTeam);
+            });
+    })
     
-    // router.put('/:id', (req, res) => {
+    router.put('/:programId/:teamId', (req, res) => {
         
-    //   });
+      });
     
     
     

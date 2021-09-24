@@ -17,21 +17,25 @@ const ExperimentDirectorySchema = new Schema({
 
 const TeamSchema = new Schema({
     name: String,
-    members:[],
-    experimentDirectories: [
-        // {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'ExperimentDirectory'
-        // }
-    ]
+    // members:[],
+    // experimentDirectories: [
+    //     // {
+    //     //     type: mongoose.Schema.Types.ObjectId,
+    //     //     ref: 'ExperimentDirectory'
+    //     // }
+    // ]
+    date: String,
+    content: String,
+    text:String
 })
 
 const ProgramSchema = new Schema({
   name: String,
-  target: String,
-  startDate: Date,
+//   target: String,
+//   startDate: Date,
   teams: [],
-  stakeholders:[]
+//   stakeholders:[]
+
   
 }, {
     strictPopulate:false
