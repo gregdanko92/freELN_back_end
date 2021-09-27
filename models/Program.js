@@ -34,8 +34,10 @@ const ProgramSchema = new Schema({
   name: String,
 //   target: String,
 //   startDate: Date,
-  teams: [],
+  description: String,
 //   stakeholders:[]
+    date:String,
+    teams:[]
 
   
 }, {
