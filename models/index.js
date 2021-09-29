@@ -19,3 +19,5 @@ module.exports = {
   ExperimentDirectory: require('./Program').ExperimentDirectory,
   Experiment: require('./Program').Experiment
 };
+// Atlas connection string
+//mongodb+srv://gregdanko92:<password>@cluster0.8n1fi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority

@@ -5,6 +5,8 @@ const teamsController = require('./controllers/teamsController');
 const experimentDirectoryController = require('./controllers/experimentDirectoryController');
 const experimentController = require('./controllers/experimentController');
 const cors = require('cors')
+
+// pull in heroku's port if posted on heroku, otherwise, pull in port 4000
 const PORT = process.env.PORT || 4000;
 const app = express();
 
