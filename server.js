@@ -1,4 +1,6 @@
+
 // imports
+require('dotenv').config()
 const express = require('express');
 const programsController = require('./controllers/programsController');
 const teamsController = require('./controllers/teamsController');
